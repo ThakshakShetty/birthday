@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-image: url(background.png);
+    }
+
+    .presentation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .slide {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 1s, transform 1s;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounceIn {
+      from {
+        transform: scale(0.5);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    h1{
+      color: rgb(29, 15, 220);
+      text-shadow: rgb(71, 6, 167);
+      font-family: fantasy;
+      font-size: xx-large;
+    }
+
+    .birthday-slide {
+      animation: fadeIn 1s ease-out;
+    }
+
+    .balloon-slide {
+      animation: bounceIn 1s ease-out;
+    }
+
+    .confetti-slide {
+      animation: fadeIn 1s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation">
+    <div class="slide birthday-slide active">
+      <h1>🎉 Happy Birthday pareekshith 🎉</h1>
+    </div>
+    <div class="slide balloon-slide">
+      <img src="balloon.gif" alt="Balloons" width="300">
+    </div>
+    <div class="slide confetti-slide">
+      <img src="confetti.gif" alt="Confetti" width="300">
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    let currentSlide = 0;
+    showSlide(currentSlide);
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 5000);
+  </script>
+</body>
+</html>
+
